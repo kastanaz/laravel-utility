@@ -20,7 +20,7 @@ class LaravelUtilityServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasMigrations([
-
+                'create_settings_table'
             ]);
     }
 }
