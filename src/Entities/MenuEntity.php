@@ -3,7 +3,7 @@
 namespace Kastanaz\LaravelUtility\Entities;
 
 use ArrayAccess;
-use Kastana\KsLaravelUtility\Concerns\EntityConcern;
+use Kastanaz\LaravelUtility\Concerns\EntityConcern;
 
 class MenuEntity implements ArrayAccess
 {
