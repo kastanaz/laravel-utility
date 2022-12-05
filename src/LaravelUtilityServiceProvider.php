@@ -4,7 +4,7 @@ namespace Kastanaz\LaravelUtility;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Kastanaz\LaravelUtility\Commands\LaravelUtilityCommand;
+use Kastanaz\LaravelUtility\Commands\SyncSettingCommand;
 
 class LaravelUtilityServiceProvider extends PackageServiceProvider
 {
@@ -17,10 +17,13 @@ class LaravelUtilityServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-utility')
-            ->hasConfigFile()
+            ->hasConfigFile('setting')
             ->hasViews()
             ->hasMigrations([
                 'create_settings_table'
+            ])
+            ->hasCommands([
+                SyncSettingCommand::class
             ]);
     }
 }

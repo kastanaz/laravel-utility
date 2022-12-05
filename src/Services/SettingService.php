@@ -2,7 +2,7 @@
 
 namespace Kastanaz\LaravelUtility\Services;
 
-use App\Models\Setting;
+use Kastanaz\LaravelUtility\Models\Setting;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
