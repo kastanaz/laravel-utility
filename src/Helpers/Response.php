@@ -6,7 +6,7 @@ class Response
 {
     public static function success(string $redirect, $title = '', $message ='')
     {
-        $title = $title == '' ? __('utility::response.success') : $title;
+        $title = $title == '' ? __('laravel-utility::response.success') : $title;
         toastr()->success($title, $message);
 
         return self::redirect($redirect);
@@ -14,7 +14,7 @@ class Response
 
     public static function error(string $redirect, $title = '', $message ='')
     {
-        $title = $title == '' ? __('utility::response.error') : $title;
+        $title = $title == '' ? __('laravel-utility::response.error') : $title;
         toastr()->error($title, $message);
 
         return self::redirect($redirect);
