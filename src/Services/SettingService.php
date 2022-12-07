@@ -97,6 +97,21 @@ class SettingService
     }
 
     /**
+     * Bulk persist operation
+     *
+     * @param array $settings
+     * @return bool
+     */
+    public function bulkPersist(array $settings): bool
+    {
+        foreach ($settings as $key => $value) {
+            Setting::persist($key, $value);
+        }
+        $this->reset();
+        return true;
+    }
+
+    /**
      * Delete setting by key name
      *
      * @param string $name

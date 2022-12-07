@@ -17,7 +17,7 @@ class LaravelUtilityServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-utility')
-            ->hasConfigFile('setting')
+            ->hasConfigFile(['utility', 'setting'])
             ->hasViews()
             ->hasMigrations([
                 'create_settings_table'
