@@ -2,14 +2,14 @@
 
 namespace Kastanaz\LaravelUtility\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Kastanaz\LaravelUtility\Concerns\HasPermission;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Kastanaz\LaravelUtility\Contracts\PermissionModelContract;
 
-class Permission extends Model implements PermissionModelContract
+class Role extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, HasPermission;
 
     /**
      * The attributes that aren't mass assignable.
@@ -17,4 +17,9 @@ class Permission extends Model implements PermissionModelContract
      * @var array<string>|bool
      */
     protected $guarded = [];
+
+    public function setAttributeName($value)
+    {
+        return strtolower($value);
+    }
 }

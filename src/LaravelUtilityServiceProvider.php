@@ -17,10 +17,13 @@ class LaravelUtilityServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-utility')
-            ->hasConfigFile(['utility', 'setting'])
+            ->hasTranslations()
+            ->hasConfigFile(['utility', 'setting', 'permission'])
             ->hasViews()
             ->hasMigrations([
-                'create_settings_table'
+                'create_settings_table',
+                'create_roles_table',
+                'create_permissions_table',
             ])
             ->hasCommands([
                 SyncSettingCommand::class

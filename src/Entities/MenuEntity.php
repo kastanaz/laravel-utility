@@ -23,7 +23,7 @@ class MenuEntity implements ArrayAccess
         'attribute' => null,
         'role_level' => null,
         'url' => null,
-        // 'authorized' => true,
+        'permission' => false,
         'submenu' => null
     ];
 
@@ -44,25 +44,28 @@ class MenuEntity implements ArrayAccess
             'attribute' => $menu['attribute'] ?? null,
             'role_level' => $menu['role_level'] ?? null,
             'url' => url($menu['path']),
-            // 'authorized' => $this->isAuthorized($menu['permission'] ?? null),
+            'authorized' => $this->isAuthorized($menu['permission'] ?? null),
         );
     }
 
     public function isAuthorized($permission = null): bool
     {
-        if (is_null($permission)) {
-            $permission = $this->container['permission'];
-        }
+        return false;
+        // return auth()->user()->canAny($permission);
+        // return false;
+        // if (is_null($permission)) {
+        //     $permission = $this->container['permission'];
+        // }
 
-        if (app()->runningInConsole()) {
-            return false;
-        }
+        // if (app()->runningInConsole()) {
+        //     return false;
+        // }
 
-        if (isset($permission[0])) {
-            return user()->hasPermissionTo($permission[0], $permission[1]);
-        }
+        // if (isset($permission[0])) {
+        //     return user()->hasPermissionTo($permission[0], $permission[1]);
+        // }
 
-        return true;
+        // return true;
     }
 
     public function getAuthorized()

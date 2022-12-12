@@ -2,20 +2,47 @@
 
 namespace Kastanaz\LaravelUtility\Services;
 
-use Kastanaz\LaravelUtility\Contracts\PermissionModelContract;
+use Illuminate\Support\Collection;
 
 class PermissionService
 {
-    protected PermissionModelContract $model;
+    private Collection $permissions;
 
     public function __construct()
     {
-        $model = config('ks-permission.model');
-        $this->model = new $model;
+        $this->permissions = collect($this->getConfigPermission());
     }
 
-    public function getList()
+    private function getConfigPermission()
     {
-        return $this->model->get();
+        return config('permission.list');
     }
+
+    public function getListPermission(): Collection
+    {
+        return $this->permissions->map(function($item) {
+            $item['alias'] = __('utility::' . $item['alias']);
+
+            foreach ($item['permission'] as $inline => $value) {
+                $item['inline'][$item['name'] .'-'. $inline] = $value;
+            }
+
+            return $item;
+        });
+    }
+
+    public function getPermission($name)
+    {
+        return $this->permissions->where('name', $name);
+    }
+
+    public function isPermissionActive($name, $action)
+    {
+        return $this->permissions->where('name', $name)->first()['permission'][$action];
+    }
+
+    // public function getInlineName(array $permission)
+    // {
+    //     return $permission['name']
+    // }
 }
